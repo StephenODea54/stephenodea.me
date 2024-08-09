@@ -1,0 +1,98 @@
+---
+import { BlurFade } from '@/components/react/BlurFade';
+import { ProjectCard } from '@/components/react/ProjectCard';
+import { BLUR_FADE_DELAY } from '@/constants/BLUR_FADE_DELAY';
+
+const PROJECTS = [
+    {
+        description:
+            'A serverless ELT pipeline for analyzing the Youngstown, OH real estate market.',
+        href: 'https://metabase.stephenodea.me/public/dashboard/1bb4cb2e-ad20-454a-987b-1efec48ddc55?tab=34-overview&as_of_date=&city=&zip_code=',
+        image: '/ytown_listings_demo.png',
+        links: [
+            {
+                href: 'https://metabase.stephenodea.me/public/dashboard/1bb4cb2e-ad20-454a-987b-1efec48ddc55?tab=34-overview&as_of_date=&city=&zip_code=',
+                label: 'Website',
+            },
+            {
+                href: 'https://github.com/StephenODea54/ytown-listings',
+                label: 'Source',
+            },
+        ],
+        tags: [
+            'Python',
+            'AWS',
+            'GitHub Actions',
+            'Docker',
+            'Postgres',
+            'Metabase',
+            'Coolify',
+        ],
+        title: 'Youngstown Listings',
+    },
+    {
+        description:
+            'A Python CLI program that parses and exports dropdown lists from Microsoft Word Documents.',
+        href: 'https://github.com/StephenODea54/dropdown-parser',
+        image: '/python_logo.png',
+        links: [
+            {
+                href: 'https://github.com/StephenODea54/dropdown-parser',
+                label: 'Source',
+            },
+        ],
+        tags: ['Python'],
+        title: 'Dropdown Parser',
+    },
+];
+---
+
+<section id='projects'>
+    <div class='w-full space-y-12 py-12'>
+        <BlurFade client:only delay={BLUR_FADE_DELAY * 9}>
+            <div
+                class='flex flex-col items-center justify-center space-y-4 text-center'
+            >
+                <div class='space-y-2'>
+                    <div
+                        class='inline-block rounded-lg bg-foreground px-3 py-1 text-sm text-background'
+                    >
+                        My Projects
+                    </div>
+                    <h2 class='text-3xl font-bold tracking-tighter sm:text-5xl'>
+                        Check out my latest work
+                    </h2>
+                    <p
+                        class='text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed'
+                    >
+                        I&apos;ve worked on a variety of projects, from simple
+                        websites to complex web applications. Here are a few of
+                        my favorites.
+                    </p>
+                </div>
+            </div>
+        </BlurFade>
+        <div
+            class='mx-auto grid max-w-[800px] grid-cols-1 gap-3 sm:grid-cols-2'
+        >
+            {
+                PROJECTS.map((project, index) => (
+                    <BlurFade
+                        client:only
+                        delay={BLUR_FADE_DELAY * 10 + index * 0.05}
+                    >
+                        <ProjectCard
+                            client:only
+                            description={project.description}
+                            href={project.href}
+                            image={project.image}
+                            links={project.links}
+                            tags={project.tags}
+                            title={project.title}
+                        />
+                    </BlurFade>
+                ))
+            }
+        </div>
+    </div>
+</section>
