@@ -1,0 +1,81 @@
+---
+import { BLUR_FADE_DELAY } from '@/constants/BLUR_FADE_DELAY';
+import { BlurFade } from '@/components/react/BlurFade';
+import { ResumeCard } from '@/components/react/ResumeCard';
+
+const JOBS = [
+    {
+        altText: 'Equity Trust Company',
+        description: [
+            'Led the migration of local IT infrastructure to a cloud-based data lakehouse on AWS.',
+            'Optimized legacy SSRS data workflows and processing scripts, reducing data retrieval times.',
+            'Designed and implemented scalable ELT pipelines using S3, Lambda, Step Functions, Glue, and Athena.',
+            'Developed a real-time data synchronization framework between AWS, Salesforce, and other third party APIs.',
+            'Created a real-time data orchestration notification suite using Dynamo, Eventbridge, and SNS.',
+            'Built data visualizations in Metabase that tracked key performance indicators for analyzing customer call center operational efficiency.',
+        ],
+        logoUrl: '/etc_logo.jpg',
+        period: 'Mar. 2024 - Present',
+        subtitle: 'Analytics Engineer',
+        title: 'Equity Trust Company',
+    },
+    {
+        altText: 'Medical Mutual',
+        description: [
+            'Designed and operationalized analytic web application using React, TypeScript, and TailwindCSS to support decision-making across the organization.',
+            'Provided analytical support across the enterprise by applying statistical methods and concepts to analyze information and publish actionable insights back to stakeholders.',
+            'Architected, developed, and deployed web app using TypeScript, React, Apollo that provides analytical support and what-if analysis to assist sales conversations in the field.',
+            'Designed and productionalized ETL pipeline from on-premises data stores to AWS RDS.',
+            'Developed and inner sourced a design system using React, TailwindCSS, and Storybook to allow engineers to easily pull in reusable, themed, and responsive components to their applications.',
+            'Developed GraphQL API (Apollo Server) and frontend client (Nexus.js, Objection.js) to query and mutate data in AWS DynamoDB to enable stakeholders to easily modify utterances and intents in a custom-built chatbot.',
+            'Utilized AWS CDK to define infrastructure as code for various full-stack aplications and to enable fully automated CI/CD pipelines.',
+            "Led team of engineers and data scientists in a machine learning project to predict customer lifetime value for the organization's membership.",
+            'Developed API and Python package as part of an ML model registry to allow data scientists to easily register and inventory developed machine learning models.',
+        ],
+        logoUrl: '/med_mutual_logo.jpeg',
+        period: 'Sep. 2022 - Mar. 2024',
+        subtitle: 'Data Scientist',
+        title: 'Medical Mutual',
+    },
+    {
+        altText: 'Highmark',
+        description: [
+            'Provided support for pricing, product development, rate filings, and enhancements of existing pricing tools.',
+            'Refined discounts for provider networks by utilizing claims data and enrollment data as well as by leveraging reference‑based pricing experience, facility rates, diagnostic related group schedules, and Medicare/Medicaid based pricing.',
+            'Enhanced existing predictive modeling techniques by partnering with third‑party analytics vendors and Highmark’s Data Science team.',
+            'Supported the development of renewal rate increase targets for Highmark’s Managed Care and Stop Loss reinsurance lines of business.',
+            'Provided support for Level Funding products by partnering with Underwriters.',
+        ],
+        logoUrl: '/highmark_logo.png',
+        period: 'Aug. 2021 - Sep. 2022',
+        subtitle: 'Actuarial Analyst',
+        title: 'Highmark',
+    },
+];
+---
+
+<section id='work'>
+    <div class='flex min-h-0 flex-col gap-y-3'>
+        <BlurFade client:only delay={BLUR_FADE_DELAY * 3}>
+            <h2 class='text-xl font-bold'>Work Experience</h2>
+        </BlurFade>
+        {
+            JOBS.map((job, index) => (
+                <BlurFade
+                    client:only
+                    delay={BLUR_FADE_DELAY * 4 + index * 0.05}
+                >
+                    <ResumeCard
+                        client:only
+                        altText={job.altText}
+                        description={job.description}
+                        logoUrl={job.logoUrl}
+                        period={job.period}
+                        subtitle={job.subtitle}
+                        title={job.title}
+                    />
+                </BlurFade>
+            ))
+        }
+    </div>
+</section>
