@@ -1,0 +1,31 @@
+---
+import { BlurFade } from '@/components/react/BlurFade';
+import { BlurFadeText } from '@/components/react/BlurFadeText';
+import { HeroAvatar } from '@/components/react/HeroAvatar';
+import { BLUR_FADE_DELAY } from '@/constants/BLUR_FADE_DELAY';
+---
+
+<section id='hero'>
+    <div class='mx-auto w-full max-w-2xl space-y-8'>
+        <div class='flex justify-between gap-2'>
+            <div class='flex flex-1 flex-col gap-2'>
+                <BlurFadeText
+                    client:only
+                    className='text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none'
+                    delay={BLUR_FADE_DELAY}
+                    text="Hi, I'm Steve 👋"
+                    yOffset={8}
+                />
+                <BlurFadeText
+                    client:only
+                    className='max-w-[600px] md:text-xl'
+                    delay={BLUR_FADE_DELAY}
+                    text='Math nerd who likes to cosplay as an engineer. I enjoy clickity-clacking on my keyboard and giving stakeholders things to take to their boss.'
+                />
+            </div>
+            <BlurFade client:only delay={BLUR_FADE_DELAY}>
+                <HeroAvatar client:only />
+            </BlurFade>
+        </div>
+    </div>
+</section>
