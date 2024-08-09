@@ -1,0 +1,13 @@
+---
+import { BLUR_FADE_DELAY } from '@/constants/BLUR_FADE_DELAY';
+import { BlurFade } from '@/components/react/BlurFade';
+import Layout from '@/layouts/Layout.astro';
+---
+
+<Layout title='Notes'>
+    <section id='notes'>
+        <BlurFade client:load delay={BLUR_FADE_DELAY}>
+            <h1 class='mb-8 text-2xl font-medium tracking-tighter'>Notes</h1>
+        </BlurFade>
+    </section>
+</Layout>
