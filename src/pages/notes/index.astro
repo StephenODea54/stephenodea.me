@@ -2,6 +2,9 @@
 import { BLUR_FADE_DELAY } from '@/constants/BLUR_FADE_DELAY';
 import { BlurFade } from '@/components/react/BlurFade';
 import Layout from '@/layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const notes = await getCollection('notes');
 ---
 
 <Layout title='Notes'>
@@ -9,5 +12,22 @@ import Layout from '@/layouts/Layout.astro';
         <BlurFade client:load delay={BLUR_FADE_DELAY}>
             <h1 class='mb-8 text-2xl font-medium tracking-tighter'>Notes</h1>
         </BlurFade>
+        {
+            notes.map((entry, idx) => (
+                <BlurFade client:load delay={BLUR_FADE_DELAY * 2 * idx + 0.05}>
+                    <a
+                        class='mb-4 flex flex-col space-y-1'
+                        href={entry.data.url}
+                    >
+                        <div class='flex w-full flex-col'>
+                            <p class='tracking-tight'>{entry.data.title}</p>
+                            <p class='h-6 text-xs text-muted-foreground'>
+                                {entry.data.lastModifiedDate}
+                            </p>
+                        </div>
+                    </a>
+                </BlurFade>
+            ))
+        }
     </section>
 </Layout>
