@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 
 import { Button } from '@/components/react/Button';
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
 
-export const ModeToggle = () => {
+export const ModeToggle = forwardRef<
+    HTMLButtonElement,
+    React.ComponentProps<'button'>
+>(({}, ref) => {
     const [theme, setThemeState] = useState<'theme-light' | 'dark' | 'system'>(
         'theme-light',
     );
@@ -23,16 +26,17 @@ export const ModeToggle = () => {
 
     return (
         <Button
-            variant='ghost'
-            type='button'
-            size='icon'
             className='px-2'
             onClick={() =>
                 setThemeState(theme === 'dark' ? 'theme-light' : 'dark')
             }
+            ref={ref}
+            size='icon'
+            type='button'
+            variant='ghost'
         >
             <SunIcon className='h-[1.2rem] w-[1.2rem] text-neutral-800 dark:hidden dark:text-neutral-200' />
             <MoonIcon className='hidden h-[1.2rem] w-[1.2rem] text-neutral-800 dark:block dark:text-neutral-200' />
         </Button>
     );
-};
+});
