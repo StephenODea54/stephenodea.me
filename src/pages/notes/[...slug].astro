@@ -13,5 +13,14 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<h1>{entry.data.title}</h1>
-<Content />
+<h1 class='title max-w-[650px] text-2xl font-medium tracking-tighter'>
+    {entry.data.title}
+</h1>
+<p class='mb-8 mt-2 text-sm text-neutral-600 dark:text-neutral-400'>
+    {entry.data.lastModifiedDate}
+</p>
+<article
+    class='prose-a:font-medium prose-a:text-primary prose-a:underline prose-a:underline-offset-4 prose-code:rounded prose-code:bg-muted prose-code:px-[0.3rem] prose-code:py-[0.2rem] prose-code:font-mono prose-code:text-sm prose-code:font-semibold prose-li:ml-8 prose-li:list-disc'
+>
+    <Content />
+</article>
